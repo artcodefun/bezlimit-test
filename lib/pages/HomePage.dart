@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
     double topExtent = 400;
     double elementHPadding = 10;
     double elementSize = 100;
-    var vController = Get.put(VerticalScrollController(topExtent: topExtent));
+    var vController = Get.put(VerticalScrollController());
     var eController = Get.put(
         ElementController(elementWidth: elementSize + 2 * elementHPadding));
 

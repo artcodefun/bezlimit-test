@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class VerticalScrollController extends GetxController {
-  VerticalScrollController({required this.topExtent}) : super();
-
-  final double topExtent;
+  VerticalScrollController() : super();
 
   final RxDouble position = 0.0.obs;
 
@@ -33,13 +31,13 @@ class VerticalScrollController extends GetxController {
     position.listen((p0) {
       if(showingSnack)return;
 
-      if (canShowSnack && p0 >= topExtent) {
+      if (canShowSnack && p0 == _controller.position.maxScrollExtent) {
         Get.snackbar("Hi!", "It's a snackbar", snackPosition: SnackPosition.BOTTOM, duration: snackDuration);
         showingSnack=true;
         Future.delayed(snackDuration).whenComplete(() => showingSnack=false);
         canShowSnack = false;
       }
-      if(!canShowSnack && p0<topExtent){
+      if(!canShowSnack && p0<_controller.position.maxScrollExtent){
         canShowSnack=true;
       }
     });
